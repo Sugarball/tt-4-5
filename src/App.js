@@ -18,7 +18,8 @@ class App extends Component {
     }
   }
 
-  handlePost() {
+  handlePost(e) {
+    e.preventDefault()
     const { inputMsg, msgList } = this.state
     let _msgList = [...msgList]
 
@@ -43,12 +44,12 @@ class App extends Component {
           <h2>Welcome to ilabs tech talk</h2>
         </div>
 
-        <section className="input-sec">
+        <form className="input-sec" onSubmit={this.handlePost.bind(this)}>
           <input type="text" value={inputMsg} onChange={e => this.setState({inputMsg: e.target.value})} />
-          <button className="post-btn" onClick={this.handlePost.bind(this)}>
+          <button className="post-btn" type="submit" onClick={this.handlePost.bind(this)}>
             send
           </button>
-        </section>
+        </form>
 
         <div className="msg-sec">
           {

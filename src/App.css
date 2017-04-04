@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: fantasy;
 }
 
 .App-logo {
@@ -22,3 +23,37 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.input-sec {
+  margin: 30px auto;
+}
+.input-sec input {
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: 1px solid #222;
+  font-family: fantasy;
+}
+.input-sec .post-btn {
+  height: 42px;
+  line-height: 42px;
+  font-size: 20px;  
+  margin-left: 15px;
+  padding: 0 15px;
+  color: white;
+  background-color: #5fd5f5;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  font-family: fantasy;
+}
+
+.msg-content {
+  color: #222;
+  height: 40px;
+  margin: 20px auto;
+  font-size: 18px;
+  border-bottom: 1px solid #cecece;
+}
+
