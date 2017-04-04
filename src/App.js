@@ -1,41 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import logo from './logo.svg'
+import './App.css'
+
+import * as actionCreators from './actions/chat'
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      msgList: [
-        {
-          msg: 'hello, it\'s me',
-        },
-        {
-          msg: 'i was wondering if after all these years you\'d like to meet',
-        }
-      ],
       inputMsg: '',
     }
   }
 
   handlePost(e) {
     e.preventDefault()
-    const { inputMsg, msgList } = this.state
-    let _msgList = [...msgList]
-
+    const { inputMsg } = this.state
     if (!inputMsg) return
-
-    _msgList.push({msg: inputMsg})
+    this.props.addMsg(inputMsg)
     this.setState({
-      msgList: _msgList,
       inputMsg: '',
     })
     
   }
 
   render() {
-    const { inputMsg, msgList } = this.state
-    
+    const { inputMsg } = this.state
+    const { msgList } = this.props
     return (
       <div className="App">
 
@@ -61,8 +53,11 @@ class App extends Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default connect(
+  state => state.chat,
+  dispatch => bindActionCreators(actionCreators, dispatch)
+)(App)
