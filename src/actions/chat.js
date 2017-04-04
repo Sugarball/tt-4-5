@@ -1,8 +1,8 @@
-import {  ADD_MSG } from "../constants/ActionTypes"
+import {  INIT_MSG } from "../constants/ActionTypes"
 
-export function addMsg(msg){
+export function initMsg(msgs){
   return {
-      type : ADD_MSG,
-      payload: msg,
+      type : INIT_MSG,
+      payload: msgs,
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+var Wilddog = require("wilddog")
 import logo from './logo.svg'
 import './App.css'
 
@@ -12,17 +13,28 @@ class App extends Component {
     this.state = {
       inputMsg: '',
     }
+    this.ref = null
+  }
+
+  componentDidMount() {
+    this.ref = new Wilddog("https://tt-4-5.wilddogio.com/")
+    this.ref.on('value', msgs => {
+      console.log('msgs', msgs.val())
+      this.props.initMsg(msgs.val())
+    })
   }
 
   handlePost(e) {
     e.preventDefault()
     const { inputMsg } = this.state
     if (!inputMsg) return
-    this.props.addMsg(inputMsg)
+
     this.setState({
       inputMsg: '',
     })
-    
+    this.ref.child('msgs').push({
+      msg: inputMsg
+    })
   }
 
   render() {

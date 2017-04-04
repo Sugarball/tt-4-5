@@ -1,23 +1,20 @@
-import { ADD_MSG } from '../constants/ActionTypes'
+import { INIT_MSG } from '../constants/ActionTypes'
 
 const initialState = {
-  msgList: [
-    {
-      msg: 'hello, it\'s me',
-    },
-    {
-      msg: 'i was wondering if after all these years you\'d like to meet',
-    }
-  ]
+  msgList: []
 }
 
 export function chat(state = initialState, action) {
   switch (action.type) {
 
-      case ADD_MSG:
-          return {...state, msgList: [...state.msgList, {msg: action.payload}]};
+    case INIT_MSG: 
+      let msgList = []
+      for (let i in action.payload.msgs) {
+        msgList.push(action.payload.msgs[i])
+      }
+      return {...state, msgList};
 
-      default:
-          return state;
+    default:
+      return state;
   }
 }
